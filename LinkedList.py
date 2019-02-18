@@ -12,6 +12,12 @@ n1.next = ListNode(2)
 n1.next.next = ListNode(3)
 n1.next.next.next = ListNode(4)
 
+while True:
+    node = n1
+    if node != None:
+        print(node.val)
+        node = node.next
+
 
 
 
