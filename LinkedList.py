@@ -5,19 +5,63 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+class LinkedList:
+    def __init__(self, val):
+        self.head = ListNode(val)
+    
+    def insert_node(self, val):
+        current = self.head
+        while current.next != None:
+            current = current.next
+        current.next = ListNode(val)
+    
+    def delete_node(self, val):
+        current = self.head
+        if current.val == val:
+            # Head needs to be deleted
+            self.head = current.next
+            return
+        # At this point we know its not the head
+        previous = self.head
+        while(current != None):
+            if current.val == val:
+                # This is the node to delete
+                previous.next = current.next
+                break
+            previous = current
+            current = current.next
 
 
-n1 = ListNode(1)
-n1.next = ListNode(2)
-n1.next.next = ListNode(3)
-n1.next.next.next = ListNode(4)
+    def reverse_list(self):
+        current = self.head
+        previous = None        
+        while(current != None):
+            next = current.next
+            current.next = previous
+            previous = current
+            current = next            
+        self.head = previous           
 
-node = n1
-while True:
-    if node != None:
-        print(node.val)
-        node = node.next
+    def print_list(self):
+        current = self.head
+        while(current != None):
+            print(current.val)
+            current = current.next
 
+list = LinkedList(1)
+list.insert_node(2)
+list.insert_node(3)
+list.insert_node(4)
 
+list.print_list()
+print("Reversing List")
+list.reverse_list()
+list.print_list()
+print("Deleting node")
+list.delete_node(1)
+list.print_list()
+print("Deleting node again")
+list.delete_node(4)
+list.print_list()
 
 
