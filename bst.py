@@ -44,7 +44,70 @@ class Tree:
                 else:
                     self.insert_recur(root.left, val)
 
+def inorder_traversal(root):
+    if root == None:
+        return
+    else:
+        inorder_traversal(root.left)
+        print(root.val)
+        inorder_traversal(root.right)
 
+def combine_traversal(root1, root2):
+    if root1 == None:
+        return root2
+    if root2 == None:
+        return root1
+    
+    root1.val += root2.val
+    root1.left = combine_traversal(root1.left, root2.left)
+    root1.right = combine_traversal(root1.right, root2.right)
+    return root1
+
+def combine_traversal2(root1, root2):
+    if root1 == None:
+        return root2
+    if root2 == None:
+        return root1
+    root1.left = combine_traversal2(root1.left, root2.left)
+    root1.val += root2.val
+    root1.right = combine_traversal2(root1.right, root2.right)
+    return root1
+
+def maxDepth(node): 
+    if node is None:         
+        return 0 
+    else : 
+        # Compute the depth of each subtree 
+        v = node.val
+        lDepth = maxDepth(node.left) 
+        rDepth = maxDepth(node.right) 
+        # Use the larger one 
+        if (lDepth > rDepth): 
+            return lDepth+1
+        else: 
+            return rDepth+1
+
+
+t = Tree(1)
+t.insert(2)
+t.insert(3)
+inorder_traversal(t.root)
+# t = Tree(15)
+# t.insert(10)
+# t.insert(5)
+# t.insert(11)
+# t.insert(12)
+# t.insert(13)
+# t.insert(20)
+
+# print(maxDepth(t.root))
+
+# u = Tree(5)
+# u.insert(4)
+# u.insert(6)
+
+# x = combine_traversal2(t.root,u.root)
+# inorder_traversal(x)
 
 
 
