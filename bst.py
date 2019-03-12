@@ -44,13 +44,25 @@ class Tree:
                 else:
                     self.insert_recur(root.left, val)
 
-def inorder_traversal(root):
-    if root == None:
-        return
-    else:
-        inorder_traversal(root.left)
-        print(root.val)
-        inorder_traversal(root.right)
+def inorderTraversal(root):
+    l = []
+    def inorder_traversal(root):    
+        if root != None:      
+            inorder_traversal(root.left)
+            l.append(root.val)
+            inorder_traversal(root.right)
+    inorder_traversal(root)
+    return l
+
+def preorderTraversal(root):
+    l = []
+    def preorder_traversal(root):    
+        if root != None:      
+            l.append(root.val)
+            preorder_traversal(root.left)
+            preorder_traversal(root.right)
+    preorder_traversal(root)
+    return l
 
 def combine_traversal(root1, root2):
     if root1 == None:
@@ -88,10 +100,15 @@ def maxDepth(node):
             return rDepth+1
 
 
-t = Tree(1)
+t = Tree(5)
 t.insert(2)
 t.insert(3)
-inorder_traversal(t.root)
+t.insert(7)
+t.insert(6)
+t.insert(10)
+t.insert(1)
+print(inorderTraversal(t.root))
+print(preorderTraversal(t.root))
 # t = Tree(15)
 # t.insert(10)
 # t.insert(5)
