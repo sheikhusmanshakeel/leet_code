@@ -9,22 +9,22 @@ class TreeNode(object):
 class Tree:
     def __init__(self, val):
         self.root = TreeNode(val)
-    
+
     def insert(self, val):
         current = self.root
         previous = None
-        while(current != None):
+        while (current != None):
             previous = current
             if val < current.val:
                 current = current.left
             else:
                 current = current.right
-        
+
         if previous == None:
             self.root = TreeNode(val)
             return
 
-        if (val <  previous.val ):
+        if (val < previous.val):
             previous.left = TreeNode(val)
         else:
             previous.right = TreeNode(val)
@@ -33,7 +33,7 @@ class Tree:
         if root == None:
             root = TreeNode(val)
         else:
-            if root.val  < val:
+            if root.val < val:
                 if root.right == None:
                     root.right = TreeNode(val)
                 else:
@@ -44,36 +44,44 @@ class Tree:
                 else:
                     self.insert_recur(root.left, val)
 
+
 def inorderTraversal(root):
     l = []
-    def inorder_traversal(root):    
-        if root != None:      
+
+    def inorder_traversal(root):
+        if root != None:
             inorder_traversal(root.left)
             l.append(root.val)
             inorder_traversal(root.right)
+
     inorder_traversal(root)
     return l
 
+
 def preorderTraversal(root):
     l = []
-    def preorder_traversal(root):    
-        if root != None:      
+
+    def preorder_traversal(root):
+        if root != None:
             l.append(root.val)
             preorder_traversal(root.left)
             preorder_traversal(root.right)
+
     preorder_traversal(root)
     return l
+
 
 def combine_traversal(root1, root2):
     if root1 == None:
         return root2
     if root2 == None:
         return root1
-    
+
     root1.val += root2.val
     root1.left = combine_traversal(root1.left, root2.left)
     root1.right = combine_traversal(root1.right, root2.right)
     return root1
+
 
 def combine_traversal2(root1, root2):
     if root1 == None:
@@ -85,19 +93,20 @@ def combine_traversal2(root1, root2):
     root1.right = combine_traversal2(root1.right, root2.right)
     return root1
 
-def maxDepth(node): 
-    if node is None:         
-        return 0 
-    else : 
+
+def maxDepth(node):
+    if node is None:
+        return 0
+    else:
         # Compute the depth of each subtree 
         v = node.val
-        lDepth = maxDepth(node.left) 
-        rDepth = maxDepth(node.right) 
+        lDepth = maxDepth(node.left)
+        rDepth = maxDepth(node.right)
         # Use the larger one 
-        if (lDepth > rDepth): 
-            return lDepth+1
-        else: 
-            return rDepth+1
+        if (lDepth > rDepth):
+            return lDepth + 1
+        else:
+            return rDepth + 1
 
 
 t = Tree(5)
@@ -125,12 +134,3 @@ print(preorderTraversal(t.root))
 
 # x = combine_traversal2(t.root,u.root)
 # inorder_traversal(x)
-
-
-
-
-
-        
-
-        
-
