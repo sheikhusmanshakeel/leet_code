@@ -1,23 +1,26 @@
-import numpy as np
-
-
 def rabin_karp_matcher(text, pattern, radix, prime):
     n = len(text)
     m = len(pattern)
-    h = np.power(radix, m - 1) % prime
     p = 0
     t = 0
+    h = 1
+    # The value of h would be "pow(d, M-1)%q"
+    for i in range(m - 1):
+        h = (h * radix) % prime
+
     for i in range(m):
-        p = (radix * p + int(pattern[i])) % prime
-        t = (radix * t + int(text[i])) % prime
-    for s in range(n - m):  # O(n-m)
+        p = (radix * p + ord(pattern[i])) % prime
+        t = (radix * t + ord(text[i])) % prime
+
+    for s in range(n - m + 1):  # O(n-m)
         if p == t:
-            if pattern == text[s + 1:s + m]:  # O(m) operation
-                print("pattern found")
+            if pattern == text[s:s + m]:  # O(m) operation
+                print("pattern found at index {}".format(s))
         if s < n - m:
-            t = (radix * (t - int(text[s + 1]) * prime)) + int(text[s + m + 1]) % prime
+            t = (((t - ord(text[s]) * h) * radix) + ord(text[s + m])) % prime
 
 
-text = "123456758"
-pattern = "75"
-rabin_karp_matcher(text, pattern, 10, 887)
+text = "this is not good"
+pattern = "good"
+# search(text, pattern, 887)
+rabin_karp_matcher(text, pattern, 256, 887)
