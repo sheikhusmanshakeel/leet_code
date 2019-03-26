@@ -13,14 +13,14 @@ class Tree:
     def insert(self, val):
         current = self.root
         previous = None
-        while (current != None):
+        while current is not None:
             previous = current
             if val < current.val:
                 current = current.left
             else:
                 current = current.right
 
-        if previous == None:
+        if previous is None:
             self.root = TreeNode(val)
             return
 
@@ -72,9 +72,9 @@ def preorderTraversal(root):
 
 
 def combine_traversal(root1, root2):
-    if root1 == None:
+    if root1 is None:
         return root2
-    if root2 == None:
+    if root2 is None:
         return root1
 
     root1.val += root2.val
@@ -84,9 +84,9 @@ def combine_traversal(root1, root2):
 
 
 def combine_traversal2(root1, root2):
-    if root1 == None:
+    if root1 is None:
         return root2
-    if root2 == None:
+    if root2 is None:
         return root1
     root1.left = combine_traversal2(root1.left, root2.left)
     root1.val += root2.val
