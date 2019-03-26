@@ -24,22 +24,22 @@ class Tree:
             self.root = TreeNode(val)
             return
 
-        if (val < previous.val):
+        if val < previous.val:
             previous.left = TreeNode(val)
         else:
             previous.right = TreeNode(val)
 
     def insert_recur(self, root, val):
-        if root == None:
+        if root is None:
             root = TreeNode(val)
         else:
             if root.val < val:
-                if root.right == None:
+                if root.right is None:
                     root.right = TreeNode(val)
                 else:
                     self.insert_recur(root.right, val)
             else:
-                if root.left == None:
+                if root.left is None:
                     root.left = TreeNode(val)
                 else:
                     self.insert_recur(root.left, val)
@@ -49,7 +49,7 @@ def inorderTraversal(root):
     l = []
 
     def inorder_traversal(root):
-        if root != None:
+        if root is not None:
             inorder_traversal(root.left)
             l.append(root.val)
             inorder_traversal(root.right)
@@ -62,7 +62,7 @@ def preorderTraversal(root):
     l = []
 
     def preorder_traversal(root):
-        if root != None:
+        if root is not None:
             l.append(root.val)
             preorder_traversal(root.left)
             preorder_traversal(root.right)
