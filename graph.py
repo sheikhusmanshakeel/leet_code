@@ -39,6 +39,7 @@ node3.adj = [node6, node5]
 node4.adj = [node2]
 node5.adj = [node4]
 node6.adj = [node6]
+node1.adj = [node2]
 
 g = {2: node2, 3: node3, 4: node4, 5: node5, 6: node6}
 BFS(g, node1)
