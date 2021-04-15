@@ -11,7 +11,7 @@ class GNode:
         self.parent = parent
 
 
-def BFS(graph, source):
+def BFS(source):
     source.color = 1
     source.dist = 0
     q = deque()
@@ -42,4 +42,4 @@ node6.adj = [node6]
 node1.adj = [node2]
 
 g = {2: node2, 3: node3, 4: node4, 5: node5, 6: node6}
-BFS(g, node1)
+BFS(node1)

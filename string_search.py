@@ -11,7 +11,7 @@ def str_search_bf(text, pattern):
         if string_found:
             break
 
-    return (s, s + m - 1)
+    return s, s + m - 1
 
 
 text = "usman shakeel is mansour's nephew"
